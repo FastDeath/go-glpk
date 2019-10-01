@@ -32,17 +32,19 @@ int main()
 	glp_set_obj_dir(lp, GLP_MAX);
 
 	glp_add_rows(lp, 3);
-	for (int i = 0; i < 3; i++) {
-		char name[2] = { 'p' + i, 0 };
+	for (int i = 0; i < 3; i++)
+	{
+		char name[2] = {'p' + i, 0};
 		glp_set_row_name(lp, i + 1, name);
 	}
 	glp_set_row_bnds(lp, 1, GLP_UP, 0, 100.0);
 	glp_set_row_bnds(lp, 2, GLP_UP, 0, 600.0);
 	glp_set_row_bnds(lp, 3, GLP_UP, 0, 300.0);
-	
+
 	glp_add_cols(lp, 3);
-	for (int i = 0; i < 3; i++) {
-		char name[3] = { 'x', '0' + i, 0 };
+	for (int i = 0; i < 3; i++)
+	{
+		char name[3] = {'x', '0' + i, 0};
 		glp_set_col_name(lp, i + 1, name);
 		glp_set_col_bnds(lp, i + 1, GLP_LO, 0.0, 0.0);
 	}
@@ -55,9 +57,10 @@ int main()
 
 	double mat[3][4] = {
 		{0, 1.0, 1.0, 1.0},
-		{0,10.0, 4.0, 5.0},
+		{0, 10.0, 4.0, 5.0},
 		{0, 2.0, 2.0, 6.0}};
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++)
+	{
 		glp_set_mat_row(lp, i + 1, 3, ind, mat[i]);
 	}
 
@@ -66,9 +69,10 @@ int main()
 	glp_simplex(lp, &parm);
 
 	printf("Z = %g", glp_get_obj_val(lp));
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++)
+	{
 		printf("; %s = %g", glp_get_col_name(lp, i + 1),
-		       glp_get_col_prim(lp, i + 1));
+			   glp_get_col_prim(lp, i + 1));
 	}
 	putchar('\n');
 

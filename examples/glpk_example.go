@@ -21,8 +21,11 @@
 
 package main
 
-import "fmt"
-import "github.com/lukpank/go-glpk/glpk"
+import (
+	"fmt"
+
+	"github.com/fastdeath/glpk/glpk"
+)
 
 func main() {
 	lp := glpk.New()
